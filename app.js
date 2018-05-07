@@ -5,7 +5,7 @@ var path = require('path')
 app.get('', function(req, res){
     res.sendfile('default.html', { root: __dirname + "/client"} );
 });
-app.get('/',function(req,res){
+app.get('/*',function(req,res){
   const data = url.parse(req.url,true);
   var query = data.path;
   var myObj = {};
