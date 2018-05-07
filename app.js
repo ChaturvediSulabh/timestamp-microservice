@@ -12,7 +12,7 @@ app.get('/*',function(req,res){
   var isunix = query.match(/[0-9]+/g);
   isunix = isunix.join('');
   var isFound = query.search(/[a-zA-Z0-9,%]+/g);
-  if(isunix.length === 10){
+  if(isunix.length === 10 && isFound === -1){
     myObj.unix = parseInt(isunix);
     var u_d = parseInt(isunix) * 1000;
     u_d = new Date(u_d);
