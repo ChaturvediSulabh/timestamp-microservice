@@ -1,6 +1,11 @@
-const http = require('http');
-const url = require('url');
-http.createServer(function(req, res){
+var express = require('express');
+var app = express();
+var url = require('url');
+var path = require('path')
+app.get('', function(req, res){
+    res.sendfile('default.html', { root: __dirname + "/client"} );
+});
+app.get('/',function(req,res){
   const data = url.parse(req.url,true);
   var query = data.path;
   var myObj = {};
@@ -22,7 +27,9 @@ http.createServer(function(req, res){
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(myObj));
    }else {
- 	   res.writeHead(404);
-	   res.end();
+           res.writeHead(404);
+           res.end();
    }
-}).listen(process.env.PORT || 8080);
+});
+app.listen(process.env.PORT || 8080);
+
