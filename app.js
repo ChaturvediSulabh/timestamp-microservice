@@ -7,22 +7,22 @@ app.get('', function(req, res){
 });
 app.get('/*',function(req,res){
   const data = url.parse(req.url,true);
-  var query = data.path;
-  var myObj = {};
+  let query = data.path;
+  let myObj = {};
   console.log("0, ",query);
   const notEpoch = query.search(/[a-zA-Z ,%;:-]+/g);
   if(notEpoch === -1){
     query = query.replace("/","");
     myObj.unix = parseInt(query);
-    var u_d = parseInt(query) * 1000;
+    let u_d = parseInt(query) * 1000;
     u_d = new Date(u_d);
     myObj.natural = u_d.toDateString();
   }else{
-    var dStr = query.replace(/%20/g," ");
+    let dStr = query.replace(/%20/g," ");
     console.log(query);
     n_d = new Date(dStr);
     n_d = n_d.toDateString();
-    var u_d = new Date(n_d).getTime() / 1000;
+    let u_d = new Date(n_d).getTime() / 1000;
     myObj.unix = u_d;
     myObj.natural = n_d;
   }
